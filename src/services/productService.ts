@@ -1,3 +1,4 @@
+import IProduct from '../interfaces/productInterface';
 import productModel from '../models/productModel';
 
 const getAll = async () => {
@@ -5,7 +6,10 @@ const getAll = async () => {
   return result;
 };
 
-const create = async () => {};
+const create = async (product: IProduct) => {
+  const result = await productModel.create(product);
+  return result;
+};
 
 export = { getAll, create };
 

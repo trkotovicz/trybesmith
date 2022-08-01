@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import IProduct from '../interfaces/productInterface';
 import productService from '../services/productService';
 
 const getAll = async (req: Request, res: Response) => {
@@ -6,7 +7,11 @@ const getAll = async (req: Request, res: Response) => {
   return res.status(200).json(products);
 };
 
-const create = async (_req: Request, _res: Response) => {};
+const create = async (req: Request, res: Response) => {
+  const product = req.body as IProduct;
+  const result = await productService.create(product);
+  return res.status(201).json(result);
+};
 
 export = { getAll, create };
 
